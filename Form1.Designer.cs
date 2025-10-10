@@ -123,11 +123,11 @@
         #endregion
 
         private ToolStrip toolStrip1;
-        public static DataGridView dataGridView1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
         private ToolStripButton tsbObtener;
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbEliminar;
+        public DataGridView dataGridView1;
     }
 }
