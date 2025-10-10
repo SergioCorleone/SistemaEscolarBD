@@ -30,9 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro));
             toolStrip1 = new ToolStrip();
-            dataGridView1 = new DataGridView();
             toolStripButton1 = new ToolStripButton();
             toolStripButton2 = new ToolStripButton();
+            dataGridView1 = new DataGridView();
+            tsbEditar = new ToolStripButton();
+            tsbEliminar = new ToolStripButton();
+            tsbObtener = new ToolStripButton();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -40,29 +43,21 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbObtener, toolStripButton1, toolStripButton2, tsbEditar, tsbEliminar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 27);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 28);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(800, 423);
-            dataGridView1.TabIndex = 1;
-            // 
             // toolStripButton1
             // 
             toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
             toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(143, 24);
-            toolStripButton1.Text = "toolStripButton1";
+            toolStripButton1.Size = new Size(87, 24);
+            toolStripButton1.Text = "Agregar";
+            toolStripButton1.Click += toolStripButton1_Click;
             // 
             // toolStripButton2
             // 
@@ -73,6 +68,39 @@
             toolStripButton2.Size = new Size(62, 24);
             toolStripButton2.Text = "Salir";
             toolStripButton2.Click += toolStripButton2_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(0, 28);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(800, 423);
+            dataGridView1.TabIndex = 1;
+            // 
+            // tsbEditar
+            // 
+            tsbEditar.Image = (Image)resources.GetObject("tsbEditar.Image");
+            tsbEditar.ImageTransparentColor = Color.Magenta;
+            tsbEditar.Name = "tsbEditar";
+            tsbEditar.Size = new Size(72, 24);
+            tsbEditar.Text = "Editar";
+            // 
+            // tsbEliminar
+            // 
+            tsbEliminar.Image = (Image)resources.GetObject("tsbEliminar.Image");
+            tsbEliminar.ImageTransparentColor = Color.Magenta;
+            tsbEliminar.Name = "tsbEliminar";
+            tsbEliminar.Size = new Size(87, 24);
+            tsbEliminar.Text = "Eliminar";
+            // 
+            // tsbObtener
+            // 
+            tsbObtener.Image = (Image)resources.GetObject("tsbObtener.Image");
+            tsbObtener.ImageTransparentColor = Color.Magenta;
+            tsbObtener.Name = "tsbObtener";
+            tsbObtener.Size = new Size(87, 24);
+            tsbObtener.Text = "Obtener";
             // 
             // Registro
             // 
@@ -97,5 +125,8 @@
         private DataGridView dataGridView1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
+        private ToolStripButton tsbObtener;
+        private ToolStripButton tsbEditar;
+        private ToolStripButton tsbEliminar;
     }
 }
