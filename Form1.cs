@@ -21,5 +21,12 @@ namespace SistemaEscolarBD
         {
 
         }
+
+        private void tsbObtener_Click(object sender, EventArgs e)
+        {
+            VetanaCatalogo vetanaCatalogo = new VetanaCatalogo();
+            vetanaCatalogo.Show();
+           
+        }
     }
 }
