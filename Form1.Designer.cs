@@ -128,6 +128,6 @@
         private ToolStripButton tsbObtener;
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbEliminar;
-        public DataGridView dataGridView1;
+        public static DataGridView dataGridView1;
     }
 }
