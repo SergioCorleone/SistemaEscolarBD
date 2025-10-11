@@ -15,6 +15,7 @@ namespace SistemaEscolarBD
     public partial class VetanaCatalogo : Form
     {
         ConexionesBD conexionesBD = new ConexionesBD();
+        public static int Editar = 0;
         public VetanaCatalogo()
         {
             InitializeComponent();
@@ -30,50 +31,56 @@ namespace SistemaEscolarBD
 
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
             Close();
-            int Academico = 1;
+             Editar = 1;
 
         }
         private void btnAlumnos_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAlumnos);
             Close();
-            
+            Editar = 2;
         }
 
         private void btnAula_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAula);
             Close();
+            Editar=3;
         }
 
         private void btnCarrera_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerCarrera);
             Close();
+            Editar = 4;
         }
 
         private void btnCiudad_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObteneCiudad);
             Close();
+            Editar=5;
         }
 
         private void btnEstado_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerEstado);
             Close();
+            Editar=6;
         }
 
         private void btnMateria_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerMateria);
             Close();
+            Editar=7;
         }
 
         private void btnReinscripcion_Click(object sender, EventArgs e)
         {
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerPais);
             Close();
+            Editar=8;
         }
 
         private void label1_Click(object sender, EventArgs e)
