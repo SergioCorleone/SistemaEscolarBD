@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace SistemaEscolarBD
 {
-    
+
     public partial class VetanaCatalogo : Form
     {
-
+        ConexionesBD conexionesBD = new ConexionesBD();
         public VetanaCatalogo()
         {
             InitializeComponent();
@@ -27,15 +27,55 @@ namespace SistemaEscolarBD
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConexionesBD conexionesBD = new ConexionesBD();
-            conexionesBD.ObtenerBDAcademicos(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
-            Close ();
+
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+            int Academico = 1;
 
         }
-            
-        
-
         private void btnAlumnos_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnAula_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnCarrera_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnCiudad_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnEstado_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnMateria_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void btnReinscripcion_Click(object sender, EventArgs e)
+        {
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

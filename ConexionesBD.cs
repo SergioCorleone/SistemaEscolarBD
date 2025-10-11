@@ -10,7 +10,8 @@ public class ConexionesBD
               + " Integrated Security=True; "
               + " TrustServerCertificate=True";
     public string ConsultaObtenerAcademico = "SELECT [IdAcademico]\r\n      ,[Nombre]\r\n      ,[Apellidos]\r\n      ,[Grado]\r\n      ,[FechaHoraCreacion]\r\n  FROM [GruposBD].[dbo].[Academico]";
-    public void ObtenerBDAcademicos(DataGridView dgv,string consulta) {
+
+    public void ObtenerBD(DataGridView dgv,string consulta) {
         SqlConnection con = new SqlConnection(connexion);
 
         try
