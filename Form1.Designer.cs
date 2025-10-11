@@ -128,7 +128,7 @@
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
-        private ToolStripButton tsbObtener;
+        public static ToolStripButton tsbObtener;
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbEliminar;
         public static DataGridView dataGridView1;

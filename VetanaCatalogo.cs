@@ -35,43 +35,44 @@ namespace SistemaEscolarBD
         }
         private void btnAlumnos_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAlumnos);
             Close();
+            
         }
 
         private void btnAula_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAula);
             Close();
         }
 
         private void btnCarrera_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerCarrera);
             Close();
         }
 
         private void btnCiudad_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObteneCiudad);
             Close();
         }
 
         private void btnEstado_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerEstado);
             Close();
         }
 
         private void btnMateria_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerMateria);
             Close();
         }
 
         private void btnReinscripcion_Click(object sender, EventArgs e)
         {
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerPais);
             Close();
         }
 
