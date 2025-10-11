@@ -47,6 +47,7 @@
             label1.Size = new Size(274, 20);
             label1.TabIndex = 0;
             label1.Text = "Seleccione que catalogo desea obtener:";
+            label1.Click += label1_Click;
             // 
             // btnAcademico
             // 
@@ -76,6 +77,7 @@
             btnAula.TabIndex = 3;
             btnAula.Text = "Aula";
             btnAula.UseVisualStyleBackColor = true;
+            btnAula.Click += btnAula_Click;
             // 
             // btnCarrera
             // 
@@ -85,6 +87,7 @@
             btnCarrera.TabIndex = 4;
             btnCarrera.Text = "Carrera";
             btnCarrera.UseVisualStyleBackColor = true;
+            btnCarrera.Click += btnCarrera_Click;
             // 
             // btnCiudad
             // 
@@ -94,6 +97,7 @@
             btnCiudad.TabIndex = 5;
             btnCiudad.Text = "Ciudad";
             btnCiudad.UseVisualStyleBackColor = true;
+            btnCiudad.Click += btnCiudad_Click;
             // 
             // btnEstado
             // 
@@ -103,6 +107,7 @@
             btnEstado.TabIndex = 6;
             btnEstado.Text = "Estado";
             btnEstado.UseVisualStyleBackColor = true;
+            btnEstado.Click += btnEstado_Click;
             // 
             // btnMateria
             // 
@@ -112,6 +117,7 @@
             btnMateria.TabIndex = 7;
             btnMateria.Text = "Materia";
             btnMateria.UseVisualStyleBackColor = true;
+            btnMateria.Click += btnMateria_Click;
             // 
             // btnReinscripcion
             // 
@@ -119,8 +125,9 @@
             btnReinscripcion.Name = "btnReinscripcion";
             btnReinscripcion.Size = new Size(109, 29);
             btnReinscripcion.TabIndex = 8;
-            btnReinscripcion.Text = "Reinscripcion";
+            btnReinscripcion.Text = "Pais";
             btnReinscripcion.UseVisualStyleBackColor = true;
+            btnReinscripcion.Click += btnReinscripcion_Click;
             // 
             // VetanaCatalogo
             // 

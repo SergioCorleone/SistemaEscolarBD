@@ -18,7 +18,7 @@ public class ConexionesBD
     public string ConsultaObtenerMateria = "SELECT[IdMateria],[NombreMateria],[Creditos],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Materia]";
     public string ConsultaObtenerPais = "SELECT[IdPais],[NombrePais],[SiglaPais],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Pais]";
 
-    public void ObtenerBDAcademicos(DataGridView dgv,string consulta) {
+    public void ObtenerBD(DataGridView dgv,string consulta) {
         SqlConnection con = new SqlConnection(connexion);
 
         try
