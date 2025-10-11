@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro));
             toolStrip1 = new ToolStrip();
             tsbObtener = new ToolStripButton();
             toolStripButton1 = new ToolStripButton();
@@ -52,7 +51,7 @@
             // 
             // tsbObtener
             // 
-            tsbObtener.Image = (Image)resources.GetObject("tsbObtener.Image");
+            tsbObtener.Image = Properties.Resources.document_folder_get_e_icon_232920;
             tsbObtener.ImageTransparentColor = Color.Magenta;
             tsbObtener.Name = "tsbObtener";
             tsbObtener.Size = new Size(87, 24);
@@ -61,7 +60,7 @@
             // 
             // toolStripButton1
             // 
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.Image = Properties.Resources.add_circle_create_expand_new_plus_icon_123218;
             toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
             toolStripButton1.Size = new Size(87, 24);
@@ -71,7 +70,7 @@
             // toolStripButton2
             // 
             toolStripButton2.Alignment = ToolStripItemAlignment.Right;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+            toolStripButton2.Image = Properties.Resources.cancel_close_delete_exit_logout_remove_x_icon_123217;
             toolStripButton2.ImageTransparentColor = Color.Magenta;
             toolStripButton2.Name = "toolStripButton2";
             toolStripButton2.Size = new Size(62, 24);
@@ -80,7 +79,7 @@
             // 
             // tsbEditar
             // 
-            tsbEditar.Image = (Image)resources.GetObject("tsbEditar.Image");
+            tsbEditar.Image = Properties.Resources.edit_icon_128873;
             tsbEditar.ImageTransparentColor = Color.Magenta;
             tsbEditar.Name = "tsbEditar";
             tsbEditar.Size = new Size(72, 24);
@@ -88,7 +87,7 @@
             // 
             // tsbEliminar
             // 
-            tsbEliminar.Image = (Image)resources.GetObject("tsbEliminar.Image");
+            tsbEliminar.Image = Properties.Resources.trash_bin_icon_icons_com_67981;
             tsbEliminar.ImageTransparentColor = Color.Magenta;
             tsbEliminar.Name = "tsbEliminar";
             tsbEliminar.Size = new Size(87, 24);
@@ -131,6 +130,6 @@
         public static ToolStripButton tsbObtener;
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbEliminar;
-        public static DataGridView dataGridView1;
+        public DataGridView dataGridView1;
     }
 }
