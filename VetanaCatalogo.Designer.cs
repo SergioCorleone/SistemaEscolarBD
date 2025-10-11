@@ -42,11 +42,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(100, 102);
+            label1.Location = new Point(156, 103);
             label1.Name = "label1";
-            label1.Size = new Size(274, 20);
+            label1.Size = new Size(164, 20);
             label1.TabIndex = 0;
-            label1.Text = "Seleccione que catalogo desea obtener:";
+            label1.Text = "Seleccione su catalogo:";
             label1.Click += label1_Click;
             // 
             // btnAcademico

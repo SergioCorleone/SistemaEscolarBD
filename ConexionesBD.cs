@@ -18,9 +18,11 @@ public class ConexionesBD
     public string ConsultaObtenerMateria = "SELECT[IdMateria],[NombreMateria],[Creditos],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Materia]";
     public string ConsultaObtenerPais = "SELECT[IdPais],[NombrePais],[SiglaPais],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Pais]";
 
-    public void ObtenerBD(DataGridView dgv,string consulta) {
-        SqlConnection con = new SqlConnection(connexion);
 
+    public void ObtenerBD(DataGridView dgv,string consulta) {
+        
+        SqlConnection con = new SqlConnection(connexion);
+        
         try
         {
             con.Open();
@@ -28,6 +30,7 @@ public class ConexionesBD
             DataTable dt = new DataTable();
             adacademicos.Fill(dt);
             dgv.DataSource = dt;
+           
         }
         catch (Exception ex)
         {
