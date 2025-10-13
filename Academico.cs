@@ -13,10 +13,12 @@ namespace SistemaEscolarBD
 {
     public partial class Academico : Form
     {
+       
         ConexionesBD conexionesBD = new ConexionesBD();
         public Academico()
         {
             InitializeComponent();
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

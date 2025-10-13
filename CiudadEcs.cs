@@ -11,12 +11,18 @@ using System.Windows.Forms;
 
 namespace SistemaEscolarBD
 {
-    public partial class Ciudad : Form
+    public partial class CiudadEcs : Form
     {
+        EditarCiudad editarCiudad;
         ConexionesBD conexionesBD = new ConexionesBD();
-        public Ciudad()
+        public CiudadEcs(EditarCiudad EditarCiudad)
         {
             InitializeComponent();
+            this.editarCiudad = EditarCiudad;
+
+            tbCuidad.Text = EditarCiudad.NombreCiudad;
+            tbSiglasCiudad.Text = EditarCiudad.SiglasCiudad;
+            //Formatear comboBox antes de llenarlo 
             SqlConnection con = new SqlConnection(conexionesBD.connexion);
 
             try
@@ -43,7 +49,9 @@ namespace SistemaEscolarBD
                     con.Close();
                 }
             }
+            cbIdEstado.SelectedValue = EditarCiudad.IdEstado;
         }
+        
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -52,37 +60,11 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string IdEstado = "";
+            string EditarCiudad = $"UPDATE [dbo].[Ciudad] SET [NombreCiudad] = '{tbCuidad.Text}',[SiglasCiudad] = '{tbSiglasCiudad.Text}',[IdEstado] = '{cbIdEstado.SelectedValue}' WHERE IdCiudad = '{editarCiudad.Id}'";
 
-
-            if (cbIdEstado.SelectedItem == null)
-            {
-                MessageBox.Show("Agrege un Estado");
-            }
-            else
-            {
-                IdEstado = cbIdEstado.SelectedValue.ToString();
-            }
-            string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarCiudad = "INSERT INTO [dbo].[Ciudad]" +
-           "([NombreCiudad]" +
-           ",[SiglasCiudad]" +
-           ",[FechaHoraCreacion]" +
-           ",[IdEstado])" +
-     "VALUES" +
-           $"('{tbCuidad.Text}','{tbSiglasCiudad.Text}','{fechaFormateada}','{IdEstado}')";
-            conexionesBD.AgregarBD(AgregarCiudad);
-
+            conexionesBD.EditarBD(EditarCiudad);
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObteneCiudad);
-
-            tbCuidad.Text = string.Empty;
-            tbSiglasCiudad.Text = string.Empty;
-            cbIdEstado.SelectedIndex = -1;
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+   
     }
 }

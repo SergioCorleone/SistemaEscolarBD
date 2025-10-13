@@ -34,7 +34,9 @@
             toolStripButton2 = new ToolStripButton();
             tsbEditar = new ToolStripButton();
             tsbEliminar = new ToolStripButton();
+            toolStripButton3 = new ToolStripButton();
             dataGridView1 = new DataGridView();
+            toolStripButton4 = new ToolStripButton();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -42,7 +44,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbObtener, toolStripButton1, toolStripButton2, tsbEditar, tsbEliminar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbObtener, toolStripButton1, toolStripButton2, tsbEditar, tsbEliminar, toolStripButton3, toolStripButton4 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 27);
@@ -84,6 +86,7 @@
             tsbEditar.Name = "tsbEditar";
             tsbEditar.Size = new Size(72, 24);
             tsbEditar.Text = "Editar";
+            tsbEditar.Click += tsbEditar_Click;
             // 
             // tsbEliminar
             // 
@@ -92,6 +95,16 @@
             tsbEliminar.Name = "tsbEliminar";
             tsbEliminar.Size = new Size(87, 24);
             tsbEliminar.Text = "Eliminar";
+            tsbEliminar.Click += tsbEliminar_Click;
+            // 
+            // toolStripButton3
+            // 
+            toolStripButton3.Image = Properties.Resources.add_circle_create_expand_new_plus_icon_123218;
+            toolStripButton3.ImageTransparentColor = Color.Magenta;
+            toolStripButton3.Name = "toolStripButton3";
+            toolStripButton3.Size = new Size(121, 24);
+            toolStripButton3.Text = "Reinscripcion";
+            toolStripButton3.Click += toolStripButton3_Click;
             // 
             // dataGridView1
             // 
@@ -104,6 +117,15 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(800, 423);
             dataGridView1.TabIndex = 1;
+            // 
+            // toolStripButton4
+            // 
+            toolStripButton4.Image = Properties.Resources.add_circle_create_expand_new_plus_icon_123218;
+            toolStripButton4.ImageTransparentColor = Color.Magenta;
+            toolStripButton4.Name = "toolStripButton4";
+            toolStripButton4.Size = new Size(161, 24);
+            toolStripButton4.Text = "Administrar Grupos";
+            toolStripButton4.Click += toolStripButton4_Click;
             // 
             // Registro
             // 
@@ -127,9 +149,11 @@
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
-        public static ToolStripButton tsbObtener;
         private ToolStripButton tsbEditar;
         private ToolStripButton tsbEliminar;
+        public ToolStripButton tsbObtener;
+        private ToolStripButton toolStripButton3;
+        private ToolStripButton toolStripButton4;
         public static DataGridView dataGridView1;
     }
 }
