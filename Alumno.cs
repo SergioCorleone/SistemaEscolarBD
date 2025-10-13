@@ -12,10 +12,12 @@ namespace SistemaEscolarBD
 {
     public partial class Alumno : Form
     {
+        
         ConexionesBD conexionesBD = new ConexionesBD();
         public Alumno()
         {
             InitializeComponent();
+
         }
 
         private void Alumno_Load(object sender, EventArgs e)

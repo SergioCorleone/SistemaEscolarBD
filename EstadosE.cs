@@ -11,12 +11,18 @@ using System.Windows.Forms;
 
 namespace SistemaEscolarBD
 {
-    public partial class Estadocs : Form
+    public partial class EstadosE : Form
     {
+        
+        EditarEstado editarEstado; 
         ConexionesBD conexionesBD = new ConexionesBD();
-        public Estadocs()
+        public EstadosE(EditarEstado EditarEstado)
         {
             InitializeComponent();
+            this.editarEstado = EditarEstado;
+
+            tbEstado.Text = EditarEstado.NombreEstado;
+            tbSiglasEstado.Text = EditarEstado.SiglasEstado;
             SqlConnection con = new SqlConnection(conexionesBD.connexion);
             try
             {
@@ -42,6 +48,7 @@ namespace SistemaEscolarBD
                     con.Close();
                 }
             }
+            cbIdPais.SelectedValue = EditarEstado.IdPais;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -51,31 +58,10 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-                string idPais = "";
+            string EditarEstado = $"UPDATE [dbo].[Estado] SET [NombreEstado] = '{tbEstado.Text}',[SiglaEstado] ='{tbSiglasEstado.Text}',[IdPais] = '{cbIdPais.SelectedValue}' WHERE IdEstado = '{editarEstado.Id}'";
 
-            if(cbIdPais.SelectedItem == null)
-            {
-                MessageBox.Show("Agrege un pais");
-            }   
-            else
-            {
-                idPais = cbIdPais.SelectedValue.ToString();
-            }
-            string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string AgregaEstado = "INSERT INTO [dbo].[Estado]" +
-           "([NombreEstado]" +
-           ",[SiglaEstado]" +
-           ",[FechaHoraCreacion]" +
-           ",[IdPais])" +
-             "VALUES" +
-           $"('{tbEstado.Text}','{tbSiglasEstado.Text}','{fechaFormateada}','{idPais}')";
-
-            conexionesBD.AgregarBD(AgregaEstado);
+            conexionesBD.EditarBD(EditarEstado);
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerEstado);
-            tbEstado.Text = string.Empty;
-            tbSiglasEstado.Text = string.Empty;
-            cbIdPais.SelectedIndex = -1;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SistemaEscolarBD
 {
-    partial class Ciudad
+    partial class CarreraE
     {
         /// <summary>
         /// Required designer variable.
@@ -28,37 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tbSiglasCiudad = new TextBox();
-            tbCuidad = new TextBox();
+            tbSiglasCarrera = new TextBox();
+            tbNombreCarrera = new TextBox();
             btnSalir = new Button();
             btnAgregar = new Button();
             label4 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label2 = new Label();
             label1 = new Label();
-            cbIdEstado = new ComboBox();
-            label3 = new Label();
             SuspendLayout();
             // 
-            // tbSiglasCiudad
+            // tbSiglasCarrera
             // 
-            tbSiglasCiudad.Location = new Point(213, 124);
-            tbSiglasCiudad.Name = "tbSiglasCiudad";
-            tbSiglasCiudad.Size = new Size(151, 27);
-            tbSiglasCiudad.TabIndex = 41;
-           
+            tbSiglasCarrera.Location = new Point(217, 166);
+            tbSiglasCarrera.Name = "tbSiglasCarrera";
+            tbSiglasCarrera.Size = new Size(151, 27);
+            tbSiglasCarrera.TabIndex = 41;
             // 
-            // tbCuidad
+            // tbNombreCarrera
             // 
-            tbCuidad.Location = new Point(213, 57);
-            tbCuidad.Name = "tbCuidad";
-            tbCuidad.Size = new Size(151, 27);
-            tbCuidad.TabIndex = 40;
-            
+            tbNombreCarrera.Location = new Point(217, 99);
+            tbNombreCarrera.Name = "tbNombreCarrera";
+            tbNombreCarrera.Size = new Size(151, 27);
+            tbNombreCarrera.TabIndex = 40;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(303, 339);
+            btnSalir.Location = new Point(301, 356);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(94, 29);
             btnSalir.TabIndex = 39;
@@ -68,7 +64,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(135, 339);
+            btnAgregar.Location = new Point(133, 356);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(94, 29);
             btnAgregar.TabIndex = 38;
@@ -79,92 +75,65 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(157, 205);
+            label4.Location = new Point(161, 247);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
             label4.TabIndex = 37;
             label4.Text = "Fecha:";
-          
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(213, 200);
+            dateTimePicker1.Location = new Point(217, 242);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(151, 27);
             dateTimePicker1.TabIndex = 36;
-            
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(106, 127);
+            label2.Location = new Point(110, 169);
             label2.Name = "label2";
-            label2.Size = new Size(102, 20);
+            label2.Size = new Size(101, 20);
             label2.TabIndex = 35;
-            label2.Text = "Siglas Ciudad:";
-          
+            label2.Text = "Siglas carrera:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(90, 57);
+            label1.Location = new Point(94, 99);
             label1.Name = "label1";
-            label1.Size = new Size(118, 20);
+            label1.Size = new Size(117, 20);
             label1.TabIndex = 34;
-            label1.Text = "Nombre Ciudad:";
-           
+            label1.Text = "Nombre carrera:";
             // 
-            // cbIdEstado
-            // 
-            cbIdEstado.FormattingEnabled = true;
-            cbIdEstado.Location = new Point(213, 269);
-            cbIdEstado.Name = "cbIdEstado";
-            cbIdEstado.Size = new Size(151, 28);
-            cbIdEstado.TabIndex = 42;
-           
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(150, 272);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 20);
-            label3.TabIndex = 43;
-            label3.Text = "Estado:";
-            label3.Click += label3_Click;
-            // 
-            // Ciudad
+            // CarreraE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 450);
-            Controls.Add(label3);
-            Controls.Add(cbIdEstado);
-            Controls.Add(tbSiglasCiudad);
-            Controls.Add(tbCuidad);
+            ClientSize = new Size(489, 485);
+            Controls.Add(tbSiglasCarrera);
+            Controls.Add(tbNombreCarrera);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
             Controls.Add(label4);
             Controls.Add(dateTimePicker1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Ciudad";
-            Text = "Ciudad";
+            Name = "CarreraE";
+            Text = "CarreraE";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox tbSiglasCiudad;
-        private TextBox tbCuidad;
+        private TextBox tbSiglasCarrera;
+        private TextBox tbNombreCarrera;
         private Button btnSalir;
         private Button btnAgregar;
         private Label label4;
         private DateTimePicker dateTimePicker1;
         private Label label2;
         private Label label1;
-        private ComboBox cbIdEstado;
-        private Label label3;
     }
 }

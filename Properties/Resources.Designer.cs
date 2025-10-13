@@ -103,6 +103,16 @@ namespace SistemaEscolarBD.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap navegador {
+            get {
+                object obj = ResourceManager.GetObject("navegador", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap trash_bin_icon_icons_com_67981 {
             get {
                 object obj = ResourceManager.GetObject("trash_bin_icon-icons.com_67981", resourceCulture);

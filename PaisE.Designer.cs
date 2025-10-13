@@ -1,6 +1,6 @@
 ﻿namespace SistemaEscolarBD
 {
-    partial class Ciudad
+    partial class PaisE
     {
         /// <summary>
         /// Required designer variable.
@@ -28,50 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tbSiglasCiudad = new TextBox();
-            tbCuidad = new TextBox();
+            tbSiglasPais = new TextBox();
+            tbNombrePais = new TextBox();
             btnSalir = new Button();
             btnAgregar = new Button();
             label4 = new Label();
             dateTimePicker1 = new DateTimePicker();
-            label2 = new Label();
+            Siglas = new Label();
             label1 = new Label();
-            cbIdEstado = new ComboBox();
-            label3 = new Label();
             SuspendLayout();
             // 
-            // tbSiglasCiudad
+            // tbSiglasPais
             // 
-            tbSiglasCiudad.Location = new Point(213, 124);
-            tbSiglasCiudad.Name = "tbSiglasCiudad";
-            tbSiglasCiudad.Size = new Size(151, 27);
-            tbSiglasCiudad.TabIndex = 41;
-           
+            tbSiglasPais.Location = new Point(214, 161);
+            tbSiglasPais.Name = "tbSiglasPais";
+            tbSiglasPais.Size = new Size(151, 27);
+            tbSiglasPais.TabIndex = 57;
             // 
-            // tbCuidad
+            // tbNombrePais
             // 
-            tbCuidad.Location = new Point(213, 57);
-            tbCuidad.Name = "tbCuidad";
-            tbCuidad.Size = new Size(151, 27);
-            tbCuidad.TabIndex = 40;
-            
+            tbNombrePais.Location = new Point(214, 94);
+            tbNombrePais.Name = "tbNombrePais";
+            tbNombrePais.Size = new Size(151, 27);
+            tbNombrePais.TabIndex = 56;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(303, 339);
+            btnSalir.Location = new Point(298, 351);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(94, 29);
-            btnSalir.TabIndex = 39;
+            btnSalir.TabIndex = 55;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(135, 339);
+            btnAgregar.Location = new Point(130, 351);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(94, 29);
-            btnAgregar.TabIndex = 38;
+            btnAgregar.TabIndex = 54;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
@@ -79,92 +75,65 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(157, 205);
+            label4.Location = new Point(158, 242);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
-            label4.TabIndex = 37;
+            label4.TabIndex = 53;
             label4.Text = "Fecha:";
-          
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(213, 200);
+            dateTimePicker1.Location = new Point(214, 237);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(151, 27);
-            dateTimePicker1.TabIndex = 36;
-            
+            dateTimePicker1.TabIndex = 52;
             // 
-            // label2
+            // Siglas
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(106, 127);
-            label2.Name = "label2";
-            label2.Size = new Size(102, 20);
-            label2.TabIndex = 35;
-            label2.Text = "Siglas Ciudad:";
-          
+            Siglas.AutoSize = true;
+            Siglas.Location = new Point(126, 168);
+            Siglas.Name = "Siglas";
+            Siglas.Size = new Size(82, 20);
+            Siglas.TabIndex = 51;
+            Siglas.Text = "Siglas pais:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(90, 57);
+            label1.Location = new Point(110, 97);
             label1.Name = "label1";
-            label1.Size = new Size(118, 20);
-            label1.TabIndex = 34;
-            label1.Text = "Nombre Ciudad:";
-           
+            label1.Size = new Size(98, 20);
+            label1.TabIndex = 50;
+            label1.Text = "Nombre pais:";
             // 
-            // cbIdEstado
-            // 
-            cbIdEstado.FormattingEnabled = true;
-            cbIdEstado.Location = new Point(213, 269);
-            cbIdEstado.Name = "cbIdEstado";
-            cbIdEstado.Size = new Size(151, 28);
-            cbIdEstado.TabIndex = 42;
-           
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(150, 272);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 20);
-            label3.TabIndex = 43;
-            label3.Text = "Estado:";
-            label3.Click += label3_Click;
-            // 
-            // Ciudad
+            // PaisE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 450);
-            Controls.Add(label3);
-            Controls.Add(cbIdEstado);
-            Controls.Add(tbSiglasCiudad);
-            Controls.Add(tbCuidad);
+            ClientSize = new Size(503, 474);
+            Controls.Add(tbSiglasPais);
+            Controls.Add(tbNombrePais);
             Controls.Add(btnSalir);
             Controls.Add(btnAgregar);
             Controls.Add(label4);
             Controls.Add(dateTimePicker1);
-            Controls.Add(label2);
+            Controls.Add(Siglas);
             Controls.Add(label1);
-            Name = "Ciudad";
-            Text = "Ciudad";
+            Name = "PaisE";
+            Text = "PaisE";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox tbSiglasCiudad;
-        private TextBox tbCuidad;
+        private TextBox tbSiglasPais;
+        private TextBox tbNombrePais;
         private Button btnSalir;
         private Button btnAgregar;
         private Label label4;
         private DateTimePicker dateTimePicker1;
-        private Label label2;
+        private Label Siglas;
         private Label label1;
-        private ComboBox cbIdEstado;
-        private Label label3;
     }
 }

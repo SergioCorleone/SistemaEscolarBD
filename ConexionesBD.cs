@@ -19,7 +19,8 @@ public class ConexionesBD
     public string ConsultaObtenerEstado = "SELECT[IdEstado],[NombreEstado],[SiglaEstado],[FechaHoraCreacion],[IdPais]FROM[GruposBD].[dbo].[Estado]";
     public string ConsultaObtenerMateria = "SELECT[IdMateria],[NombreMateria],[Creditos],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Materia]";
     public string ConsultaObtenerPais = "SELECT[IdPais],[NombrePais],[SiglaPais],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Pais]";
-
+    public string ConsultaReinscripcion = "SELECT[IdReinscripcion],[Id_Grupo],[Id_Alumno],[Calificacion],[FechaHoraCreacion] FROM[dbo].[Reincripcion]";
+    public string ConsultaGrupo = "SELECT [Id_Grupo] ,[IdAlumno] ,[IdMaestro] ,[IdAula] ,[Horario] ,[IdCarrera] FROM [dbo].[Grupo]";
 
 
 
@@ -80,8 +81,72 @@ public class ConexionesBD
         }
     }
 	
-	public ConexionesBD()
-	{
+    public void EditarBD (string ConsultaEditar)
+    {
+        SqlConnection sqlConnection = new SqlConnection(connexion);
 
-	}
+        try
+        {
+            sqlConnection.Open();
+            SqlCommand cmdEditar = new SqlCommand(ConsultaEditar,sqlConnection);
+            int registrosEditados = cmdEditar.ExecuteNonQuery();
+
+            if (registrosEditados > 0)
+            {
+                MessageBox.Show("Registro editado correctamente");
+            }
+            else
+            {
+                MessageBox.Show("Error desconocido al editar el registro");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error:" + ex) ;
+
+        }
+        finally
+        {
+            if (sqlConnection != null) 
+            { 
+            sqlConnection.Close();
+            }
+        }
+    }
+
+    public void EliminarDB (string ConsultaEliminar)
+    {
+        SqlConnection sqlConnection = new SqlConnection(connexion);
+
+        try
+        {
+            sqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand( ConsultaEliminar,sqlConnection);
+            sqlCommand.CommandType = CommandType.Text;
+
+            int NumeroRenglonesAfectados = sqlCommand.ExecuteNonQuery();
+
+            if (NumeroRenglonesAfectados > 0)
+            {
+                MessageBox.Show("El registro fue eliminado");
+               
+            }
+            else
+            {
+                MessageBox.Show("Ningun registro fue eliminado");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error" + ex);
+
+        }
+        finally
+        {
+            if(sqlConnection != null)
+            {
+                sqlConnection.Close();
+            }
+        }
+    }
 }
