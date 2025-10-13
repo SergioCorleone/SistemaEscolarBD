@@ -225,8 +225,8 @@ namespace SistemaEscolarBD
                 {
                     DataGridViewRow r = dataGridView1.SelectedRows[0];
                     EditarGrupo.Id = int.Parse(r.Cells["Id_Grupo"].Value.ToString());
-                    EditarGrupo.Alumno = int.Parse(r.Cells["IdAlumno"].ToString());
-                    EditarGrupo.Maestro = int.Parse(r.Cells["IdMaestro"].ToString());
+                    EditarGrupo.Alumno = int.Parse(r.Cells["IdAlumno"].Value.ToString());
+                    EditarGrupo.Maestro = int.Parse(r.Cells["IdMaestro"].Value.ToString());
                     EditarGrupo.Aula = int.Parse(r.Cells["IdAula"].Value.ToString());
                     EditarGrupo.Horario = r.Cells["Horario"].Value.ToString();
                     EditarGrupo.Carrera = int.Parse(r.Cells["IdCarrera"].Value.ToString()); 
