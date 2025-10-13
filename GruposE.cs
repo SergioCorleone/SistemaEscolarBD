@@ -18,6 +18,7 @@ namespace SistemaEscolarBD
         public GruposE(EditarGrupo EditarGrupo)
         {
             InitializeComponent();
+            this.editarGrupo = EditarGrupo;
             tbHorario.Text = EditarGrupo.Horario.ToString();
             SqlConnection sqlConnection = new SqlConnection(conexionesBD.connexion);
 
