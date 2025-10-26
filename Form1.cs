@@ -1,3 +1,6 @@
+using Microsoft.Data.SqlClient;
+using System.Data;
+
 namespace SistemaEscolarBD
 {
     public partial class Registro : Form
@@ -49,42 +52,42 @@ namespace SistemaEscolarBD
                 academico.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 2)
+            else if (VetanaCatalogo.Editar == 2)
             {
                 alumno.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 3)
+            else if (VetanaCatalogo.Editar == 3)
             {
                 Aula.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 4)
+            else if (VetanaCatalogo.Editar == 4)
             {
                 Carrera.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 5)
+            else if (VetanaCatalogo.Editar == 5)
             {
                 ciudad.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 6)
+            else if (VetanaCatalogo.Editar == 6)
             {
                 estado.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 7)
+            else if (VetanaCatalogo.Editar == 7)
             {
                 materia.ShowDialog();
 
             }
-            if (VetanaCatalogo.Editar == 8)
+            else if (VetanaCatalogo.Editar == 8)
             {
                 Pais.ShowDialog();
 
             }
-            if(VetanaCatalogo.Editar == 10)
+            else if(VetanaCatalogo.Editar == 10)
             {
                 Grupo.ShowDialog();
             }
@@ -116,7 +119,7 @@ namespace SistemaEscolarBD
                 }
 
             }
-            if (VetanaCatalogo.Editar == 2)
+            else if (VetanaCatalogo.Editar == 2)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -129,7 +132,7 @@ namespace SistemaEscolarBD
                     alumnoE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 3)
+            else if (VetanaCatalogo.Editar == 3)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -143,7 +146,7 @@ namespace SistemaEscolarBD
                     aulaE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 4)
+           else  if (VetanaCatalogo.Editar == 4)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -155,7 +158,7 @@ namespace SistemaEscolarBD
                     carreraE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 5)
+           else  if (VetanaCatalogo.Editar == 5)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -168,7 +171,7 @@ namespace SistemaEscolarBD
                     ciudadEcs.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 6)
+            else if (VetanaCatalogo.Editar == 6)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -181,7 +184,7 @@ namespace SistemaEscolarBD
                     estadosE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 7)
+            else if (VetanaCatalogo.Editar == 7)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -194,7 +197,7 @@ namespace SistemaEscolarBD
 
                 }
             }
-            if (VetanaCatalogo.Editar == 8)
+            else if (VetanaCatalogo.Editar == 8)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
@@ -206,27 +209,48 @@ namespace SistemaEscolarBD
                     paisE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 9)
+            else if (VetanaCatalogo.Editar == 9)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
+                    try
+                    {
+                        dataGridView1.Columns["IdReinscripcion"].Visible = false;
+                        dataGridView1.Columns["IdAlumnos"].Visible = false;
+                        dataGridView1.Columns["Id_Grupo"].Visible = false;
+                       
+                    }
+                    catch (Exception ex) {    
+                        MessageBox.Show("Error ocultando columnas: " + ex.Message);
+                    }
                     DataGridViewRow r = dataGridView1.SelectedRows[0];
                     EditarReinscripcion.id = int.Parse(r.Cells["IdReinscripcion"].Value.ToString());
                     EditarReinscripcion.idGrupo = int.Parse(r.Cells["Id_Grupo"].Value.ToString());
-                    EditarReinscripcion.idAlumno = int.Parse(r.Cells["Id_Alumno"].Value.ToString());
+                    EditarReinscripcion.idAlumno = int.Parse(r.Cells["IdAlumnos"].Value.ToString());
                     EditarReinscripcion.Calificacion = float.Parse(r.Cells["Calificacion"].Value.ToString());
                     ReinscripcionE reinscripcionE = new ReinscripcionE(EditarReinscripcion);
                     reinscripcionE.ShowDialog();
                 }
             }
-            if (VetanaCatalogo.Editar == 10)
+            else if (VetanaCatalogo.Editar == 10)
             {
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
                 {
+                    try
+                    {
+                        dataGridView1.Columns["IdAcademico"].Visible = false;
+                        dataGridView1.Columns["IdAlumnos"].Visible = false;
+                        dataGridView1.Columns["IdCarrera"].Visible = false;
+                        dataGridView1.Columns["IdAula"].Visible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error ocultando columnas: " + ex.Message);
+                    }
                     DataGridViewRow r = dataGridView1.SelectedRows[0];
                     EditarGrupo.Id = int.Parse(r.Cells["Id_Grupo"].Value.ToString());
-                    EditarGrupo.Alumno = int.Parse(r.Cells["IdAlumno"].Value.ToString());
-                    EditarGrupo.Maestro = int.Parse(r.Cells["IdMaestro"].Value.ToString());
+                    EditarGrupo.Alumno = int.Parse(r.Cells["IdAlumnos"].Value.ToString());
+                    EditarGrupo.Maestro = int.Parse(r.Cells["IdAcademico"].Value.ToString());
                     EditarGrupo.Aula = int.Parse(r.Cells["IdAula"].Value.ToString());
                     EditarGrupo.Horario = r.Cells["Horario"].Value.ToString();
                     EditarGrupo.Carrera = int.Parse(r.Cells["IdCarrera"].Value.ToString()); 
@@ -250,11 +274,35 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarAcademico = $"DELETE FROM [dbo].[Academico] WHERE IdAcademico = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarAcademico);
+               
+                try
+                {
+                    
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+                        
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarAcademico", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdAcademico", idseleccionado);
+
+                            
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerAcademico);
             }
-            if (VetanaCatalogo.Editar == 2)
+            else if (VetanaCatalogo.Editar == 2)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -266,11 +314,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarAlumno = $"DELETE FROM [dbo].[Alumnos] WHERE IdAlumnos = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarAlumno);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarAlumno", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdAlumno", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerAlumnos);
             }
-            if (VetanaCatalogo.Editar == 3)
+            else if (VetanaCatalogo.Editar == 3)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -282,11 +353,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarAula = $"DELETE FROM [dbo].[Aula] WHERE IdAula = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarAula);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarAula", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdAula", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerAula);
             }
-            if (VetanaCatalogo.Editar == 4)
+            else if (VetanaCatalogo.Editar == 4)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -298,11 +392,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarCarrera = $"DELETE FROM [dbo].[Carrera] WHERE IdCarrera = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarCarrera);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarCarrera", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdCarrera", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerCarrera);
             }
-            if (VetanaCatalogo.Editar == 5)
+            else if (VetanaCatalogo.Editar == 5)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -314,11 +431,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarCiudad = $"DELETE FROM [dbo].[Ciudad] WHERE IdCiudad = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarCiudad);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarCiudad", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdCiudad", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObteneCiudad);
             }
-            if (VetanaCatalogo.Editar == 6)
+            else if (VetanaCatalogo.Editar == 6)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -330,11 +470,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarEstado = $"DELETE FROM [dbo].[Estado] WHERE IdEstado = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarEstado);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarEstado", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdEstado", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerEstado);
             }
-            if (VetanaCatalogo.Editar == 7)
+           else  if (VetanaCatalogo.Editar == 7)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -346,11 +509,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarMateria = $"DELETE FROM [dbo].[Materia] WHERE IdMateria = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarMateria);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarMateria", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdMateria", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerMateria);
             }
-            if (VetanaCatalogo.Editar == 8)
+            else if (VetanaCatalogo.Editar == 8)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -362,11 +548,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarPais = $"DELETE FROM [dbo].[Pais] WHERE IdPais = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarPais);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarPais", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdPais", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaObtenerPais);
             }
-            if (VetanaCatalogo.Editar == 9)
+           else  if (VetanaCatalogo.Editar == 9)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -378,11 +587,34 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarReinscripcion = $"DELETE FROM [dbo].[Reincripcion] WHERE IdReinscripcion = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarReinscripcion);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarReinscripcion", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdReinscripcion", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaReinscripcion);
             }
-            if (VetanaCatalogo.Editar == 10)
+            else if (VetanaCatalogo.Editar == 10)
             {
                 int idseleccionado = 0;
                 if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count == 1)
@@ -394,8 +626,31 @@ namespace SistemaEscolarBD
                     MessageBox.Show("Debes seleccionar un registro");
                     return;
                 }
-                string EliminarGrupo = $"DELETE FROM [dbo].[Grupo] WHERE Id_Grupo = '{idseleccionado}'";
-                conexionesBD.EliminarDB(EliminarGrupo);
+                try
+                {
+
+                    using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                    {
+                        miConexion.Open();
+
+
+                        using (SqlCommand cmd = new SqlCommand("sp_EliminarGrupo", miConexion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@IdGrupo", idseleccionado);
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
                 conexionesBD.ObtenerBD(dataGridView1, conexionesBD.ConsultaGrupo);
 
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,14 +29,31 @@ namespace SistemaEscolarBD
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string EditarAcademico = "UPDATE [dbo].[Academico]" +
-             $"SET [Nombre] = '{tbNombreEditar.Text}'" +
-            $",[Apellidos] = '{tbApellidosEditar.Text}'" +
-            $",[Grado] = '{GradoEditar.SelectedItem}'" +
-            $",[FechaHoraCreacion] = '{fechaFormateada}'" +
-             $"WHERE IdAcademico = '{editarAcademico.ID}'";
 
-            conexionesBD.EditarBD(EditarAcademico);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarAcademicos", miConexion);
+                    
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdAcademico", editarAcademico.ID);
+                        cmd.Parameters.AddWithValue("@Nombre", tbNombreEditar.Text);
+                        cmd.Parameters.AddWithValue("@Apellidos", tbApellidosEditar.Text);
+                        cmd.Parameters.AddWithValue("@Grado", GradoEditar.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Registro actualizado correctamente.");
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
         }
 

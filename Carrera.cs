@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,13 +32,28 @@ namespace SistemaEscolarBD
                 return;
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarCarrera = "INSERT INTO [dbo].[Carrera]" +
-             "([NombreCarrera]" +
-             ",[SiglasCarrera]" +
-             ",[FechaHoraCreacion])" +
-             "VALUES" +
-             $"('{tbNombreCarrera.Text}','{tbSiglasCarrera.Text}','{fechaFormateada}')";
-            conexionesBD.AgregarBD(AgregarCarrera);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearCarreras", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreCarrera", tbNombreCarrera.Text);
+                    cmd.Parameters.AddWithValue("@SiglasCarrera", tbSiglasCarrera.Text);
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerCarrera);
             tbNombreCarrera.Text = string.Empty;
             tbSiglasCarrera.Text = string.Empty;

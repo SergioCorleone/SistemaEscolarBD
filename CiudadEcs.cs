@@ -60,9 +60,29 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarCiudad = $"UPDATE [dbo].[Ciudad] SET [NombreCiudad] = '{tbCuidad.Text}',[SiglasCiudad] = '{tbSiglasCiudad.Text}',[IdEstado] = '{cbIdEstado.SelectedValue}' WHERE IdCiudad = '{editarCiudad.Id}'";
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarCiudades", miConexion);
 
-            conexionesBD.EditarBD(EditarCiudad);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdCiudad", editarCiudad.Id);
+                    cmd.Parameters.AddWithValue("@NombreCiudad", tbCuidad.Text);
+                    cmd.Parameters.AddWithValue("@SiglasCiudad", tbSiglasCiudad.Text);
+                    cmd.Parameters.AddWithValue("@IdEstado", cbIdEstado.SelectedValue);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObteneCiudad);
         }
    

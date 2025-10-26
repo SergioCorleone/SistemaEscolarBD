@@ -88,8 +88,31 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarGrupo = $"UPDATE [dbo].[Grupo] SET [IdAlumno] = '{cbAlumno.SelectedValue}',[IdMaestro] = '{cbMaestro.SelectedValue}',[IdAula] = '{cbAula.SelectedValue}',[Horario] = '{tbHorario.Text}',[IdCarrera] = '{cbCarrera.SelectedValue}' WHERE Id_Grupo = '{editarGrupo.Id}'";
-            conexionesBD.EditarBD(EditarGrupo);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarGrupo", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdGrupo", editarGrupo.Id);
+                    cmd.Parameters.AddWithValue("@IdMaestro", cbMaestro.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdAlumno", cbAlumno.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdAula", cbAula.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdCarrera", cbCarrera.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Horario", tbHorario.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaGrupo);
         }
     }

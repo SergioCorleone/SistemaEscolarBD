@@ -129,9 +129,36 @@ namespace SistemaEscolarBD
             {
                 IdCarrera = cbCarrera.SelectedValue.ToString();
             }
-            string Agregargrupo = $"INSERT INTO[dbo].[Grupo]([IdAlumno], [IdMaestro], [IdAula], [Horario], [IdCarrera]) VALUES('{IdAlumno}', '{IdMaestro}', '{IdAula}', '{tbHorario.Text}', '{IdCarrera}')";
-            conexionesBD.AgregarBD(Agregargrupo);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearGrupo", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdMaestro", cbMaestro.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdAlumno", cbAlumno.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdAula", cbAula.SelectedValue);
+                    cmd.Parameters.AddWithValue("@IdCarrera", cbCarrera.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Horario", tbHorario.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaGrupo);
+            cbMaestro.SelectedIndex = -1;
+            cbAula.SelectedIndex = -1;
+            cbCarrera.SelectedIndex = -1;
+            cbAlumno.SelectedIndex = -1;
+            tbHorario.Text = string.Empty;
         }
         
 

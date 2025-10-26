@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,14 +36,28 @@ namespace SistemaEscolarBD
                 MessageBox.Show("Agrege siglas");
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarPais = "INSERT INTO [dbo].[Pais]" +
-           "([NombrePais]" +
-           ",[SiglaPais]" +
-           ",[FechaHoraCreacion])" +
-     "VALUES" +
-           $"('{tbNombrePais.Text}','{tbSiglasPais.Text}','{fechaFormateada}')";
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearPaises", miConexion);
 
-            conexionesBD.AgregarBD(AgregarPais);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombrePais", tbNombrePais.Text);
+                    cmd.Parameters.AddWithValue("@SiglaPais", tbSiglasPais.Text);
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerPais);
 
             tbNombrePais.Text = string.Empty;

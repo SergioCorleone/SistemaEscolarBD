@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,14 +37,28 @@ namespace SistemaEscolarBD
                 return;
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarMateria = "INSERT INTO [dbo].[Materia]" +
-           "([NombreMateria]" +
-           ",[Creditos]" +
-           ",[FechaHoraCreacion])" +
-     "VALUES" +
-           $"('{tbNombreMateria.Text}','{tbCreditos.Text}','{fechaFormateada}')";
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearMaterias", miConexion);
 
-            conexionesBD.AgregarBD(AgregarMateria);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreMateria", tbNombreMateria.Text);
+                    cmd.Parameters.AddWithValue("@Creditos", tbCreditos.Text);
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerMateria);
             tbNombreMateria.Text = string.Empty;
             tbCreditos.Text = string.Empty;

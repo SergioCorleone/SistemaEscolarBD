@@ -11,16 +11,16 @@ public class ConexionesBD
               + " Integrated Security=True; "
               + " TrustServerCertificate=True";
     //Consultas para agregar
-    public string ConsultaObtenerAcademico = "SELECT [IdAcademico]\r\n      ,[Nombre]\r\n      ,[Apellidos]\r\n      ,[Grado]\r\n      ,[FechaHoraCreacion]\r\n  FROM [GruposBD].[dbo].[Academico]";
-    public string ConsultaObtenerAlumnos = "SELECT[IdAlumnos],[Nombre],[Apellidos],[Estatus],[FechaHoraCreacion] FROM [GruposBD].[dbo].[Alumnos]";
-    public string ConsultaObtenerAula = "SELECT[IdAula],[Edificio],[Aula],[Piso],[CapacidadMaxima],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Aula]";
-    public string ConsultaObtenerCarrera = "SELECT[IdCarrera],[NombreCarrera],[SiglasCarrera],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Carrera]";
-    public string ConsultaObteneCiudad = "SELECT[IdCiudad],[NombreCiudad],[SiglasCiudad],[FechaHoraCreacion],[IdEstado] FROM [GruposBD].[dbo].[Ciudad]";
-    public string ConsultaObtenerEstado = "SELECT[IdEstado],[NombreEstado],[SiglaEstado],[FechaHoraCreacion],[IdPais]FROM[GruposBD].[dbo].[Estado]";
-    public string ConsultaObtenerMateria = "SELECT[IdMateria],[NombreMateria],[Creditos],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Materia]";
-    public string ConsultaObtenerPais = "SELECT[IdPais],[NombrePais],[SiglaPais],[FechaHoraCreacion]FROM[GruposBD].[dbo].[Pais]";
-    public string ConsultaReinscripcion = "SELECT[IdReinscripcion],[Id_Grupo],[Id_Alumno],[Calificacion],[FechaHoraCreacion] FROM[dbo].[Reincripcion]";
-    public string ConsultaGrupo = "SELECT [Id_Grupo] ,[IdAlumno] ,[IdMaestro] ,[IdAula] ,[Horario] ,[IdCarrera] FROM [dbo].[Grupo]";
+    public string ConsultaObtenerAcademico = "SELECT * FROM viewAcademico";
+    public string ConsultaObtenerAlumnos = "SELECT * FROM viewAlumnos";
+    public string ConsultaObtenerAula = "SELECT * FROM viewAula";
+    public string ConsultaObtenerCarrera = "SELECT * FROM viewCarrera";
+    public string ConsultaObteneCiudad = "SELECT * FROM viewCiudad";
+    public string ConsultaObtenerEstado = "SELECT * FROM viewEstado";
+    public string ConsultaObtenerMateria = "SELECT * FROM viewMateria";
+    public string ConsultaObtenerPais = "SELECT * FROM viewPais";
+    public string ConsultaReinscripcion = "SELECT * FROM viewReinscripcionesCompleto";
+    public string ConsultaGrupo = "SELECT * FROM viewGrupoCompleto";
 
 
 

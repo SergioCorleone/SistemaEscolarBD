@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +32,28 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarCarrera = $"UPDATE [dbo].[Carrera] SET [NombreCarrera] = '{tbNombreCarrera.Text}',[SiglasCarrera] = '{tbSiglasCarrera.Text}' WHERE IdCarrera = '{editarCarrera.Id}'";
-            conexionesBD.EditarBD(EditarCarrera);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarCarreras", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdCarrera", editarCarrera.Id);
+                    cmd.Parameters.AddWithValue("@NombreCarrera", tbNombreCarrera.Text);
+                    cmd.Parameters.AddWithValue("@SiglasCarrera", tbSiglasCarrera.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerCarrera);
         }
     }
