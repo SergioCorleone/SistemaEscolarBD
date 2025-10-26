@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,16 +41,39 @@ namespace SistemaEscolarBD
                 seleccion = Grado.SelectedItem.ToString();
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarAcademicoBD = "INSERT INTO[dbo].[Academico]" + "([Nombre]" + ",[Apellidos]" + ",[Grado]" + ",[FechaHoraCreacion])" +
-            "VALUES" +
-           $"('{tbNombre.Text}','{tbApellidos.Text}' ,'{seleccion}' ,'{fechaFormateada}' )";
 
-            conexionesBD.AgregarBD(AgregarAcademicoBD);
-            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
-            tbNombre.Text = string.Empty;
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearAcademicos", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", tbNombre.Text);
+                    cmd.Parameters.AddWithValue("@Apellidos", tbApellidos.Text);
+                    cmd.Parameters.AddWithValue("@Grado", Grado.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             tbApellidos.Text = string.Empty;
+            tbNombre.Text = string.Empty;
             Grado.SelectedIndex = -1;
+
+
+            conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAcademico);
+
         }
+        
 
         private void tbNombre_TextChanged(object sender, EventArgs e)
         {

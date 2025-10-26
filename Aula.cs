@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,16 +53,31 @@ namespace SistemaEscolarBD
             }
 
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarAula = "INSERT INTO [dbo].[Aula]" +
-           "([Edificio]" +
-           ",[Aula]" +
-           ",[Piso]" +
-           ",[CapacidadMaxima]" +
-           ",[FechaHoraCreacion])" +
-     "VALUES" +
-           $"('{Edificio}','{Aula}','{Piso}','{tbCapacidad.Text}','{fechaFormateada}')";
 
-            conexionesBD.AgregarBD(AgregarAula);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearAulas", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Edificio", cbEdificio.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@Aula", cbAula.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@Piso", cbAula.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@CapacidadMaxima" , tbCapacidad.Text);
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAula);
             cbEdificio.SelectedIndex = -1;
             cbAula.SelectedIndex = -1;

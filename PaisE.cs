@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +32,28 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarPais = $"UPDATE [dbo].[Pais] SET [NombrePais] = '{tbNombrePais.Text}',[SiglaPais] = '{tbSiglasPais.Text}' WHERE IdPais = '{editarPais.Id}'";
-            conexionesBD.EditarBD(EditarPais);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarPaises", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdPais", editarPais.Id);
+                    cmd.Parameters.AddWithValue("@NombrePais", tbNombrePais.Text);
+                    cmd.Parameters.AddWithValue("@SiglaPais", tbSiglasPais.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerPais);
         }
     }

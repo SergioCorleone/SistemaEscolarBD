@@ -65,9 +65,29 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarReinscripcion = $"UPDATE [dbo].[Reincripcion] SET [Id_Grupo] = '{cbGrupo.SelectedValue}',[Id_Alumno] = '{cbAlumno.SelectedValue}',[Calificacion] = '{tbCalificacion.Text}' WHERE IdReinscripcion = '{editarReinscripcion.id}'";
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_AcualizarReinscripcion", miConexion);
 
-            conexionesBD.EditarBD(EditarReinscripcion);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdReinscripcion", editarReinscripcion.id);
+                    cmd.Parameters.AddWithValue("@Id_Grupo", cbGrupo.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Id_Alumno", cbAlumno.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Calificacion", float.Parse(tbCalificacion.Text));
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1,conexionesBD.ConsultaReinscripcion);
         }
     }

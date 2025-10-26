@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,8 +34,30 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarAula = $"UPDATE [dbo].[Aula] SET [Edificio] = '{cbEdificio.SelectedItem}',[Aula] = '{cbAula.SelectedItem}',[Piso] = '{cbPiso.SelectedItem}',[CapacidadMaxima] = '{tbCapacidad.Text}' WHERE IdAula = '{editarAula.Id}'";
-            conexionesBD.EditarBD(EditarAula);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarAulas", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdAula", editarAula.Id);
+                    cmd.Parameters.AddWithValue("@Edificio", cbEdificio.Text);
+                    cmd.Parameters.AddWithValue("@Aula", cbAula.Text);
+                    cmd.Parameters.AddWithValue("@Piso", cbPiso.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@CapacidadMaxima", tbCapacidad.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAula);
         }
     }

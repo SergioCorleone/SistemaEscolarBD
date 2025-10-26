@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,8 +40,28 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarMateria = $"UPDATE [dbo].[Materia] SET [NombreMateria] = '{tbNombreMateria.Text}',[Creditos] = '{tbCreditos.Text}' WHERE IdMateria = '{editarMateria.Id}'";
-            ConexionesBD.EditarBD(EditarMateria) ;
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(ConexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarMaterias", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdMateria", editarMateria.Id);
+                    cmd.Parameters.AddWithValue("@NombreMateria", tbNombreMateria.Text);
+                    cmd.Parameters.AddWithValue("@Creditos", tbCreditos.Text);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro actualizado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             ConexionesBD.ObtenerBD(Registro.dataGridView1, ConexionesBD.ConsultaObtenerMateria) ;
         }
     }

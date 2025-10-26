@@ -63,15 +63,29 @@ namespace SistemaEscolarBD
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-            string AgregaEstado = "INSERT INTO [dbo].[Estado]" +
-           "([NombreEstado]" +
-           ",[SiglaEstado]" +
-           ",[FechaHoraCreacion]" +
-           ",[IdPais])" +
-             "VALUES" +
-           $"('{tbEstado.Text}','{tbSiglasEstado.Text}','{fechaFormateada}','{idPais}')";
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearEstados", miConexion);
 
-            conexionesBD.AgregarBD(AgregaEstado);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreEstado", tbEstado.Text);
+                    cmd.Parameters.AddWithValue("@SiglaEstado", tbSiglasEstado.Text);
+                    cmd.Parameters.AddWithValue("@IdPais", cbIdPais.SelectedValue);
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerEstado);
             tbEstado.Text = string.Empty;
             tbSiglasEstado.Text = string.Empty;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,8 +32,29 @@ namespace SistemaEscolarBD
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string EditarAlumno = $"UPDATE [dbo].[Alumnos] SET [Nombre] = '{tbNombre.Text}' ,[Apellidos] = '{tbApellidos.Text}' ,[Estatus] = '{cbEstatus.SelectedItem}' WHERE IdAlumnos = '{editarAlumnos.Id}'";
-            conexionesBD.EditarBD(EditarAlumno);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarAlumnos", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdAlumnos", editarAlumnos.Id);
+                    cmd.Parameters.AddWithValue("@Nombre", tbNombre.Text);
+                    cmd.Parameters.AddWithValue("@Apellidos", tbApellidos.Text);
+                    cmd.Parameters.AddWithValue("@Estatus", cbEstatus.SelectedItem.ToString());
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro editado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaObtenerAlumnos);
         }
     }

@@ -90,9 +90,29 @@ namespace SistemaEscolarBD
                 IdAlumno = cbAlumno.SelectedValue.ToString();
             }
             string fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string AgregarInscripcion = $"INSERT INTO [dbo].[Reincripcion] ([Id_Grupo],[Id_Alumno],[Calificacion],[FechaHoraCreacion])" +
-            $"VALUES('{IdGrupo}','{IdAlumno}','{tbCalificacion.Text}','{fechaFormateada}')";
-            conexionesBD.AgregarBD(AgregarInscripcion);
+            try
+            {
+                using (SqlConnection miConexion = new SqlConnection(conexionesBD.connexion))
+                {
+                    miConexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_CrearReinscripcion", miConexion);
+
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id_Grupo", cbGrupo.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Id_Alumno", cbAlumno.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Calificacion", float.Parse(tbCalificacion.Text));
+                    cmd.Parameters.AddWithValue("@FechaHoraCreacion", fechaFormateada);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registro creado correctamente.");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el registro: " + ex.Message);
+            }
             conexionesBD.ObtenerBD(Registro.dataGridView1, conexionesBD.ConsultaReinscripcion);
             cbGrupo.SelectedIndex = -1;
             cbAlumno.SelectedIndex = -1;
